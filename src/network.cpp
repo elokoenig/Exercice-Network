@@ -43,9 +43,20 @@ size_t Network::random_connect(const double& mean)
 
 size_t Network::set_values(const std::vector<double>& newvalues)
 {
-	values.clear();
-	values = newvalues;
-	return this->size();
+	size_t t = newvalues.size();
+	size_t n(0);
+	if ( t <= this->size() ) {
+		for ( size_t i=0; i<t; ++i ) {
+			values[i] = newvalues[i];
+			++n;
+		}
+	} else {
+		for ( size_t i=0; i<this->size(); ++i ) {
+			values[i] = newvalues[i];
+			++n;
+		}
+	}
+	return n;
 }
 
 
